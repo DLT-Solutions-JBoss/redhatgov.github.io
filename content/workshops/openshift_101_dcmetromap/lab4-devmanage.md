@@ -12,7 +12,9 @@ In this lab we will explore some of the common activities undertaken by develope
 ## Setup
 From the previous lab you should have the DC Metro Maps web app running in OpenShift.  
 
-<i class="fa fa-warning"></i> **Only if you don't already have it running already, add it with the following steps.**
+{{% alert warning %}}
+Only if you don't already have it running, add it with the following steps.
+{{% /alert %}}
 
 > <i class="fa fa-terminal"></i> Goto the terminal and type these commands:
 
@@ -21,9 +23,8 @@ $ oc new-app --name=dc-metro-map https://github.com/dudash/openshift-workshops.g
 $ oc expose service dc-metro-map
 ```
 
-
 ## See the app in action and inspect some details
-There is no more ambiguity or confusion about where the app came from.  OpenShift provides traceability for your running deployment back to the docker image and the registry it came from, as well as (for images built by openshift) back to the exact source code branch and commit.  Let's take a look at that.
+There is no more ambiguity or confusion about where the app came from.  OpenShift provides traceability for your running deployment back to the docker image and the registry it came from, as well as (for images built by OpenShift) back to the exact source code branch and commit.  Let's take a look at that.
 
 {{< panel_group >}}
 {{% panel "CLI Steps" %}}
@@ -31,26 +32,32 @@ There is no more ambiguity or confusion about where the app came from.  OpenShif
 <blockquote>
 <i class="fa fa-terminal"></i> Goto the terminal and type the following:
 </blockquote>
+
 ```
 $ oc status
 ```
 
 This is going to show the status of your current project.  In this case it will show the dc-metro-map service (svc) with a nested deployment config (dc) along with some more info that you can ignore for now.  
 
-<br/><br/><i class="fa fa-info-circle"></i>  A deployment in OpenShift is a replication controller based on a user defined template called a deployment configuration <br/><br/>
+<blockquote>
+<i class="fa fa-info-circle"></i>  A deployment in OpenShift is a replication controller based on a user defined template called a deployment configuration <br/>
+</blockquote>
 
 The dc provides us details we care about to see where our application image comes from, so let's check it out in more detail.
 
 <blockquote>
 <i class="fa fa-terminal"></i> Type the following to find out more about our dc:
 </blockquote>
+
 ```
 $ oc describe dc/dc-metro-map
 ```
 
 Notice under the template section it lists the containers it wants to deploy along with the path to the container image.
 
-<br/><br/><i class="fa fa-info-circle"></i> There are a few other ways you could get to this information.  If you are feeling adventurous, you might want to describe the replication controller (oc describe rc -l app=dc-metro-map), the image stream (oc describe is -l app=dc-metro-map) or the running pod itself (oc describe pod -l app=dc-metro-map).<br/><br/>
+<blockquote>
+<i class="fa fa-info-circle"></i> There are a few other ways you could get to this information.  If you are feeling adventurous, you might want to describe the replication controller (oc describe rc -l app=dc-metro-map), the image stream (oc describe is -l app=dc-metro-map) or the running pod itself (oc describe pod -l app=dc-metro-map).
+</blockquote>
 
 Because we built this app using S2I, we get to see the details about the build - including the container image that was used for building the source code.  So let's find out where the image came from.  Here are the steps to get more information about the build configuration (bc) and the builds themselves.
 
@@ -82,18 +89,20 @@ Click "Overview"
 <blockquote>
 Check out the details within the deployment (above and to the right of the Pods circle). 
 </blockquote>
-<p><img src="{{ site.baseurl }}/www/3.3/default/screenshots/ose-lab-devman-deployment-shortcut.png" width="200"/></p>
+<img src="/static/openshift_101_dcmetromap/ocp-lab-devman-deployment-shortcut.png" width="600"><br/>
 
 Within the deployment for the dc-metro-map is a container summary that shows both the GUID for the image and the GUID for the git branch.
-<p><img src="{{ site.baseurl }}/www/3.1/default/screenshots/ose-lab-devman-containertracibility.png" width="500"/></p>
+<img src="/static/openshift_101_dcmetromap/ocp-lab-devman-imageGuid.png" width="900"><br/>
 
 <blockquote>
 Click on the link next to "Image:"
 </blockquote>
-Here are the details of the image stream for this deployment.
-<p><img src="{{ site.baseurl }}/www/3.1/default/screenshots/ose-lab-devman-dcmteroimagestream.png" width="500"/></p>
+Here are the details of the image stream for this deployment.<br/>
+<img src="/static/openshift_101_dcmetromap/ocp-lab-devman-isDetails.png" width="900"><br/>
 
-<i class="fa fa-info-circle"></i> If you hover over the shortened image GUID or edit the image stream you can see the full GUID.<br/><br/>
+<blockquote>
+<i class="fa fa-info-circle"></i> If you hover over the shortened image GUID or edit the image stream you can see the full GUID.
+</blockquote>
 
 <blockquote>
 Click "Builds" and then Builds to get back to the build summary
@@ -102,15 +111,19 @@ Click "Builds" and then Builds to get back to the build summary
 <blockquote>
 Click "#1" to see the build details
 </blockquote>
-Because we built this app using S2I, we get to see the details about the build - including the container image that was used for building the source code.  Note that you can kick-off a rebuild here if something went wrong with the initial build and you'd like to attempt it again.
-<p><img src="{{ site.baseurl }}/www/3.3/default/screenshots/ose-lab-devman-buildsummary.png" width="500"/></p>
+Because we built this app using S2I, we get to see the details about the build - including the container image that was used for building the source code.  Note that you can kick-off a rebuild here if something went wrong with the initial build and you'd like to attempt it again.<br/>
+<img src="/static/openshift_101_dcmetromap/ocp-lab-devman-buildsummary.png" width="900"><br/>
 
 <blockquote>
 Click "Overview" and then the deployment detail link to get back to the deployment summary again
 </blockquote>
-<p><img src="{{ site.baseurl }}/www/3.3/default/screenshots/ose-lab-devman-deployment-shortcut.png" width="200"/></p>
-Notice that next to the build # you can see the comment from the last commit when the build was started.  And you can see the that commit's author.  You can click that commit GUID to be taken to the exact version of the source code that is in this deployed application.
-<p><img src="{{ site.baseurl }}/www/3.1/default/screenshots/ose-lab-devman-commitmsg.png" width="400"/></p>
+<img src="/static/openshift_101_dcmetromap/ocp-lab-devman-deployment-shortcut.png" width="600">
+<br/>
+
+Notice in the Source line you can see the comment from the last commit when the build was started.  And you can see the that commit's author.  You can click that commit GUID to be taken to the exact version of the source code that is in this deployed application.
+<br/>
+
+<img src="/static/openshift_101_dcmetromap/ocp-lab-devman-commitmsg.png" width="600"><br/>
 
 {{% /panel %}}
 {{< /panel_group >}}
@@ -140,7 +153,9 @@ $ oc logs [POD NAME]
 
 You will see in the output details of your app starting up and any status messages it has reported since it started.
 
-<br/><br/><i class="fa fa-info-circle"></i> You can see more details about the pod itself with 'oc describe pods/[POD NAME]'
+<blockquote>
+<i class="fa fa-info-circle"></i> You can see more details about the pod itself with 'oc describe pod/<POD NAME>'
+</blockquote>
 
 {{% /panel %}}
 
@@ -149,20 +164,20 @@ You will see in the output details of your app starting up and any status messag
 <blockquote>
 Click on "Applications" and then click on "Pods"
 </blockquote>
-This is going to show basic details for all pods in this project (including the builders).
-<p><img src="{{ site.baseurl }}/www/3.1/default/screenshots/ose-lab-devman-allpods.png" width="500"/></p>
+This is going to show basic details for all pods in this project (including the builders).<br/>
+<img src="/static/openshift_101_dcmetromap/ocp-lab-devman-pods.png" width="900"><br/>
 Next let's look at the log for the pod running our application.
 
 <blockquote>
 Click the pod that starts with "dc-metro-map-" and has a status of Running
 </blockquote>
-<p><img src="{{ site.baseurl }}/www/3.3/default/screenshots/ose-lab-devman-poddetails.png" width="500"/></p>
+<img src="/static/openshift_101_dcmetromap/ocp-lab-devman-poddetails.png" width="900"><br/>
 Here you see the status details of your pod as well as its configuration.  Take a minute here and look at what details are available.
 
 <blockquote>
 Click the "Logs" button
 </blockquote>
-<p><img src="{{ site.baseurl }}/www/3.3/default/screenshots/ose-lab-devman-podslogs.png" width="500"/></p>
+<img src="/static/openshift_101_dcmetromap/ocp-lab-devman-podslogs.png" width="900"><br/>
 Now you can see in the output window the details of your app starting up and any status messages it has reported since it started.
 
 {{% /panel %}}
@@ -192,7 +207,9 @@ Due to the deployment config strategy being set to "Rolling" and the "ConfigChan
 <i class="fa fa-terminal"></i> Type Ctrl+C to stop watching the pods
 </blockquote>
 
+<blockquote>
 <i class="fa fa-info-circle"></i> You can set env variables across all deployment configs with 'dc --all' instead of specifying a specifc config
+</blockquote>
 
 {{% /panel %}}
 
@@ -211,13 +228,13 @@ There are a lot of details here, feel free to check them out and ask questions, 
 <blockquote>
 Click the Environment tab next to the Details tab .
 </blockquote>
-<p><img src="{{ site.baseurl }}/www/3.3/default/screenshots/ose-lab-devman-deployconfigdetails-config.png" width="500"/></p>
+<img src="/static/openshift_101_dcmetromap/ocp-lab-devman-deployconfigdetails-config.png" width="900"><br/>
 This opens up a tab with the environment variables for this deployment config.
 
 <blockquote>
 Add an environment variable with the name BEERME and a value of 'true'
 </blockquote>
-<p><img src="{{ site.baseurl }}/www/3.3/default/screenshots/ose-lab-devman-deployconfigdetails-populated.png" width="500"/></p>
+<img src="/static/openshift_101_dcmetromap/ocp-lab-devman-deployconfigdetails-populated.png" width="900"><br/>
 
 <blockquote>
 Click "Save".  And go back to the summary view by clicking "Overview" on the left menu bar
@@ -229,7 +246,7 @@ If you are quick enough you will see a new pod spin up and an the old pod spin d
 
 With the new environment variables set the app should look like this in your web browser (with beers instead of busses):
 
-<p><img src="{{ site.baseurl }}/www/3.1/default/screenshots/ose-lab-devman-beerme.png" width="500"/></p>
+<img src="/static/openshift_101_dcmetromap/ocp-lab-devman-beerme.png" width="900"><br/>
 
 
 ## What about passwords and private keys?
@@ -283,7 +300,7 @@ Click the pod that starts with "dc-metro-map-" and has a status of Running
 Click the "Terminal" button
 </blockquote>
 
-<p><img src="{{ site.baseurl }}/www/3.1/default/screenshots/ose-lab-devman-podterminal.png" width="500"/></p>
+<img src="/static/openshift_101_dcmetromap/ocp-lab-devman-terminal.png" width="900"><br/>
 Let's look for the environment variables we set:
 
 <blockquote>

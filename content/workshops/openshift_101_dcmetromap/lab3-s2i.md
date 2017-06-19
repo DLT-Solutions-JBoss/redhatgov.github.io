@@ -9,7 +9,7 @@ layout: lab
 One of the useful components of OpenShift is its source-to-image capability.  S2I is a framework that makes it easy to turn your source code into runnable images.  The main advantage of using S2I for building reproducible docker images is the ease of use for developers.  You'll see just how simple it can be in this lab.
 
 ## Let's build a node.js web server using S2I
-We can do this either via the command line (CLI) or the web console.  You decide which you'd rather do and follow the steps below:
+We can do this either via the command line or the web console.  You decide which you'd rather do and follow the steps below.
 
 {{< panel_group >}}
 {{% panel "CLI Steps" %}}
@@ -23,28 +23,28 @@ $ oc new-app --name=dc-metro-map https://github.com/dudash/openshift-workshops.g
 $ oc expose service dc-metro-map
 ```
 
-{{% alert info %}}
-OpenShift auotmatically detected the source code type and selected the nodejs builder image
-{{% /alert %}}
-
 {{% /panel %}}
+
+{{% alert info %}}
+When using the CLI, OpenShift automatically detects the source code type and select the nodejs builder image.
+{{% /alert %}}
 
 {{% panel "Web Console Steps" %}}
 
 <blockquote>
 Click "Add to Project"
 </blockquote>
-<p><img src="{{ site.baseurl }}/www/3.1/default/screenshots/ose-lab-s2i-addbutton.png" width="100"/></p>
+<img src="/static/openshift_101_dcmetromap/ocp-addToProjectButton.png" width="200"><br/>
 
 <blockquote>
-Click "Browse Catalog" and filter for nodejs, then click the nodejs:0.10 builder image
+Click "Browse Catalog" and filter for nodejs. Select Node.js version 0.10 from the Version drop down menu and then click "Select"
 </blockquote>
-<p><img src="{{ site.baseurl }}/www/3.3/default/screenshots/ose-lab-s2i-filternode.png" width="600"/></p>
+<img src="/static/openshift_101_dcmetromap/ocp-lab-s2i-filternode.png" width="900"><br/>
 
 <blockquote>
 Fill out the boxes to look as follows:
 </blockquote>
-<p><img src="{{ site.baseurl }}/www/3.1/default/screenshots/ose-lab-s2i-addtoproject.png" width="600"/></p>
+<img src="/static/openshift_101_dcmetromap/ocp-lab-s2i-nodejs.png" width="900"><br/>
 <p>
 Notes: You will need to click to expand the "advanced options"<br/>
 The github repository URL is: https://github.com/dudash/openshift-workshops.git<br/>
@@ -61,7 +61,7 @@ Scroll to the bottom and click "Create"
 ## Check out the build details
 We can see the details of what the S2I builder did.  This can be helpful to diagnose issues if builds are failing.
 
-<i class="fa fa-magic"></i> TIP: For a node.js app, running "npm shrinkwrap" is a good practice to perform on your branch before releasing changes that you plan to build/deploy as an image with S2I
+<i class="fa fa-magic fa-2x"></i> TIP: For a node.js app, running "npm shrinkwrap" is a good practice to perform on your branch before releasing changes that you plan to build/deploy as an image with S2I
 
 {{< panel_group >}}
 {{% panel "CLI Steps" %}}
@@ -74,7 +74,9 @@ We can see the details of what the S2I builder did.  This can be helpful to diag
 $ oc get builds
 ```
 
-In the output, note the name of your build and use it to see the logs with:
+<blockquote>
+Note the name of your build from the above command output and use it to see the logs with:
+</blockquote>
 
 ```
 $ oc logs builds/[BUILD_NAME]
@@ -88,20 +90,20 @@ The console will print out the full log for your build.  Note, you could pipe th
 <blockquote>
 Click on "Builds" and then click on "Builds"
 </blockquote>
-<p><img src="{{ site.baseurl }}/www/3.3/default/screenshots/ose-lab-s2i-builds.png" width="300"/></p>
+<img src="/static/openshift_101_dcmetromap/ocp-lab-s2i-builds.png" width="300"><br/>
 
 <blockquote>
 Click on the "dc-metro-map" link
 </blockquote>
-<p><img src="{{ site.baseurl }}/www/3.1/default/screenshots/ose-lab-s2i-metromapbuild.png" width="300"/></p>
+<img src="/static/openshift_101_dcmetromap/ocp-lab-s2i-metromapbuild.png" width="900"><br/>
 
 <blockquote>
 Click on the "View Log" tab to see the details of your latest build
 </blockquote>
-<p><img src="{{ site.baseurl }}/www/3.1/default/screenshots/ose-lab-s2i-metromapbuilds.png" width="500"/></p>
+<img src="/static/openshift_101_dcmetromap/ocp-lab-s2i-viewLog.png" width="900"><br/>
 
-You should see a log output similar to the one below:
-<p><img src="{{ site.baseurl }}/www/3.1/default/screenshots/ose-lab-s2i-metromapbuildlog.png" width="500"/></p>
+You should see a log output similar to the one below:<br>
+<img src="/static/openshift_101_dcmetromap/ocp-lab-s2i-logs.png" width="900"><br/>
 
 {{% /panel %}}
 {{< /panel_group >}}
@@ -121,7 +123,7 @@ $ oc get routes
 ```
 
 <blockquote>
-Copy the HOST/PORT and paste into your favorite web browser
+Copy the HOST/PORT and paste into your favorite web browser:
 </blockquote>
 
 {{% /panel %}}
@@ -131,23 +133,23 @@ Copy the HOST/PORT and paste into your favorite web browser
 <blockquote>
 Click on Overview
 </blockquote>
-<p><img src="{{ site.baseurl }}/www/3.3/default/screenshots/ose-lab-s2i-overview.png" width="100"/></p>
+<img src="/static/openshift_101_dcmetromap/ocp-lab-s2i-overview.png" width="200"><br/>
 
 <blockquote>
 Click the URL that is listed in the dc-metro-map header
 </blockquote>
-<p><img src="{{ site.baseurl }}/www/3.3/default/screenshots/ose-lab-s2i-dcmetromapsvc.png" width="600"/></p>
+<img src="/static/openshift_101_dcmetromap/ocp-lab-s2i-dcmetromapsvc.png" width="900"><br/>
 
 {{% /panel %}}
 {{< /panel_group >}}
 
 The app should look like this in your web browser:
 
-<p><img src="{{ site.baseurl }}/www/3.1/default/screenshots/ose-lab-s2i-apprunning.png" width="500"/></p>
+<img src="/static/openshift_101_dcmetromap/ocp-lab-s2i-apprunning.png" width="900"><br/>
 
 Clicking the checkboxes will toggle on/off the individual metro stations on each colored line.  A numbered icon indicates there is more than one metro station in that area and they have been consolidated - click the number or zoom in to see more.
 
 # Summary
-In this lab we deployed a sample application using source to image.  This process built our code and wrapped that in a docker image.  It then deployed the image into our OpenShift platform in a pod and exposed a route to allow outside web traffic to access our application.  In the next lab we will look at some details of this app's deployment and make some changes to see how OpenShift can help to automate our development processes.
+In this lab we deployed a sample application using source to image.  This process built our code and wrapped that in a docker image.  It then deployed the image into our OpenShift platform in a pod and exposed a route to allow outside web traffic to access our application.  In the next lab we will look at some details of this app's deployment and make some changes to see how OpenShift can help to automate our development processes. More information about creating new applications can be found [here][1].
 
 [1]: https://docs.openshift.com/container-platform/3.4/dev_guide/application_lifecycle/new_app.html

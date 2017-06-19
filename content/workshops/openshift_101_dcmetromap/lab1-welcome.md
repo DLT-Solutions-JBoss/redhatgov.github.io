@@ -6,10 +6,10 @@ layout: lab
 ---
 
 # Welcome to OpenShift!
-This lab provides a quick tour of the console to help you get familiar with the user interface along with some key terminology we will use in subsequent lab content.  If you are already familiar with the basics of OpenShift you can skip this lab - after making sure you can login.
+This lab provides a quick tour of the console to help you get familiar with the user interface along with some key terminology we will use in subsequent lab content.  If you are already familiar with the basics of OpenShift simply ensure you can login and create the project.
 
 # Key Terms
-We will be using the following terms throughout the workshop labs so here are some basic definitions you should be familiar with.  And you'll learn more terms along the way, but these are the basics to get you started.
+We will be using the following terms throughout the workshop labs so here are some basic definitions you should be familiar with.  You'll learn more terms along the way, but these are the basics to get you started.
 
 * Container - Your software wrapped in a complete filesystem containing everything it needs to run
 * Image - We are talking about docker images; read-only and used to create containers
@@ -24,12 +24,12 @@ We will be using the following terms throughout the workshop labs so here are so
 * Node - Where the compute happens, your software is run on nodes
 
 # Accessing OpenShift
-OpenShift provides a web console that allow you to perform various tasks via a web browser.  Additionally, you can utilize a command line tool to perfrom tasks.  Let's get started by logging into both of these and checking the status of the platform.
+OpenShift provides a web console that allows you to perform various tasks via a web browser.  Additionally, you can utilize a command line tool to perfrom tasks.  Let's get started by logging into both of these and checking the status of the platform.
 
 ## Let's Login
 > Navigate to the URI provided by your instructor and login with the user/password provided (if there's an icon on the Desktop, just double click that)
 
-<img src="{{ site.baseurl }}/www/3.3/default/screenshots/ose-login.png" width="600"/><br/>
+<img src="/static/openshift_101_dcmetromap/ocp-login.png" width="600"><br/>
 *Login Webpage*
 
 Once logged in you should see your available projects - or a button to create a project if none exist already.
@@ -47,8 +47,8 @@ This is going to take you to the next logical step of adding something to the pr
 
 Don't worry, it's supposed to look empty right now because you currently don't have anything in your project (we'll fix that in the next lab).
 
-## Let's try the command line
-> <i class="fa fa-terminal"></i> Open a terminal and login using the same URI/user/password with following command:
+## Let's try the command line (CLI)
+> <i class="fa fa-terminal"></i> Open a terminal and login using the same URI with following command:
 
 ```
 $ oc login [URI]
@@ -63,7 +63,7 @@ $ oc get projects
 ## It looks empty via the command line too
 You just created a project using the web console, let's tell the terminal command line tool to use it.
 
-> <i class="fa fa-terminal"></i> Type the following command to use the demo project
+> <i class="fa fa-terminal"></i> Type the following command to use the demo project:
 
 ```
 $ oc project demo-YOUR#

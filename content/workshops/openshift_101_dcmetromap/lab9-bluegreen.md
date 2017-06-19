@@ -9,16 +9,15 @@ layout: lab
 When implementing continuous delivery for your software one very useful technique is called Blue/Green deployments.  It addresses the desire to minimize downtime during the release of a new version of an application to production.  Essentially, it involves running two production versions of your app side-by-side and then switching the routing from the last stable version to the new version once it is verified.  Using OpenShift, this can be very seamless because using containers we can easily and rapidly deploy a duplicate infrastructure to support alternate versions and modify routes as a service.  In this lab, we will walk through a simple Blue/Green workflow with an simple web application on OpenShift.
 
 ## Before starting
-Before we get started with the Blue/Green deployment lab, let us clean up some of the projects from the previous lab. 
+Before we get started with the Blue/Green deployment lab, lets clean up some of the projects from the previous lab. 
 
 ```
 $ oc delete all -l app=jenkins-ephemeral
-$ oc delete all -l app=dev
-$ oc delete all -l app=test
+$ oc delete all -l app=nodejs-helloworld-sample
 ```
 
-## Let's deploy an application
-To demonstrate Blue/Green deployments, we'll use a simple application that renders a colored box as an example. Using your GitHub account, please fork the following [project][1].
+## Lets deploy an application
+To demonstrate Blue/Green deployments, we'll use a simple application that renders a colored box as an example. Using your GitHub account, please fork the following https://github.com/dudash/openshift-workshops [project][1].
 
 You should be comfortable deploying an app at this point, but here are the steps anyway:
 
@@ -34,7 +33,7 @@ Note that we exposed this application using a route named "green". Wait for the 
 ## Release a new version of our app and test it in the same environment
 What we'll do next is create a new version of the application called "blue". The quickest way to make a change to the code is directly in the GitHub web interface. In GitHub, edit the dc-metro-map/views/dcmetro.jade file in your repo. 
 
-<p><img src="{{ site.baseurl }}/www/3.3/default/screenshots/ose-lab-bluegreen-editgithub.png" width="500"/></p>
+<img src="/static/openshift_101_dcmetromap/ocp-lab-bluegreen-editgithub.png" width="900"><br/>
 
 We can change the text labels indicated by name of a color. If you want to change the label for the "Red Line", change line 22 from "Red Line" to  "Silver Line". These changes will be easily viewable on the main screen of the application. 
 
@@ -69,17 +68,22 @@ This will bring up the Route configuration yaml. Edit the element spec: to: name
 
 {{% panel "Web Console Steps" %}}
 
-Navigate to the Routes view from the left-hand menu:
-<p><img src="{{ site.baseurl }}/www/3.3/default/screenshots/ose-lab-bluegreen-navtoroutes.png" width="500"/></p>
+>Navigate to the Routes view from the left-hand menu:
 
-In your Routes overview, click on the "green" route:
-<p><img src="{{ site.baseurl }}/www/3.3/default/screenshots/ose-lab-bluegreen-routesoverview.png" width="500"/></p>
+<img src="/static/openshift_101_dcmetromap/ocp-lab-bluegreen-navtoroutes.png" width="900"><br/>
 
-In the Route detail page, click on Actions > Edit:
-<p><img src="{{ site.baseurl }}/www/3.3/default/screenshots/ose-lab-bluegreen-routedetail.png" width="300"/></p>
+>In your Routes overview, click on the "green" route:
 
-Edit the Route: select the name dropdown and change the value from "green" to "blue":
-<p><img src="{{ site.baseurl }}/www/3.3/default/screenshots/ose-lab-bluegreen-edit.png" width="500"/></p>
+<img src="/static/openshift_101_dcmetromap/ocp-lab-bluegreen-routesoverview.png" width="900">
+<br/>
+
+>In the Route detail page, click on Actions > Edit:
+
+<img src="/static/openshift_101_dcmetromap/ocp-lab-bluegreen-routedetail.png" width="900"><br/>
+
+>Edit the Route: select the name dropdown and change the value from "green" to "blue":
+
+<img src="/static/openshift_101_dcmetromap/ocp-lab-bluegreen-edit.png" width="900"><br/>
       
 {{% /panel %}}
 {{< /panel_group >}}
@@ -92,4 +96,3 @@ If you want to read more about Blue/Green check out [this post][2] with a longer
 
 [1]: https://github.com/dudash/openshift-workshops
 [2]: http://martinfowler.com/bliki/BlueGreenDeployment.html
-[3]: 

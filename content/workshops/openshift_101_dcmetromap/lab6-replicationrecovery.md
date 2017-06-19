@@ -17,18 +17,20 @@ Let's walk through a simple example of how the replication controller can keep y
 <blockquote>
 <i class="fa fa-terminal"></i> Goto the terminal and try the following:
 </blockquote>
-{% highlight csh %}
+
+```
 $ oc scale --replicas=4 dc/dc-metro-map
-{% endhighlight %}
+```
 
 <blockquote>
 <i class="fa fa-terminal"></i> Check out the new pods:
 </blockquote>
-{% highlight csh %}
-$ oc get pods
-{% endhighlight %}
 
-Notice that you now have 4 unique pods availble to inspect.  If you want go ahead and inspect them you can see that each have their own IP address and logs (oc describe).
+```
+$ oc get pods
+```
+
+Notice that you now have 4 unique pods availble to inspect.  If you want go ahead and inspect them, using 'oc describe pod/<POD NAME>', you can see that each have their own IP address and logs.
 
 {{% /panel %}}
 
@@ -41,13 +43,13 @@ Click "Overview"
 In the deployment, click the up arrow 3 times.
 </blockquote>
 The deployment should indicate that it is scaling to 4 pods, and eventually you will have 4 running pods.  Keep in mind that each pod has it's own container which is an identical deployment of the webapp.  OpenShift is now (by default) round robin load-balancing traffic to each pod.
-<p><img src="{{ site.baseurl }}/www/3.3/default/screenshots/ose-lab-replicationrecovery-4pods.png" width="500"/></p>
+<img src="/static/openshift_101_dcmetromap/ocp-lab-replicationrecovery-4pods.png" width="900"><br/>
 
 <blockquote>
 Hover over the pod counter (the circle) and click
 </blockquote>
 Notice that you now have 4 unique webapp pods available to inspect.  If you want go ahead and inspect them you can see that each have their own IP address and logs.
-<p><img src="{{ site.baseurl }}/www/3.1/default/screenshots/ose-lab-replicationrecovery-4podslist.png" width="500"/></p>
+<img src="/static/openshift_101_dcmetromap/ocp-lab-replicationrecovery-4podslist.png" width="900"><br/>
 
 {{% /panel %}}
 {{< /panel_group >}}
@@ -55,7 +57,7 @@ Notice that you now have 4 unique webapp pods available to inspect.  If you want
 So you've told OpenShift that you'd like to maintain 4 running, load-balanced, instances of our web app.
 
 ## Recovery
-OK, now that we have a slightly more interesting desired replication state, we can test a service outages scenario. In this scenario, the dc-metro-map replication controller will ensure that other pods are created to replace those that become unhealthy.  Let's force inflict an issue and see how OpenShift reponds.
+Okay, now that we have a slightly more interesting replication state, we can test a service outages scenario. In this scenario, the dc-metro-map replication controller will ensure that other pods are created to replace those that become unhealthy.  Let's force inflict an issue and see how OpenShift reponds.
 
 {{< panel_group >}}
 {{% panel "CLI Steps" %}}
@@ -63,21 +65,28 @@ OK, now that we have a slightly more interesting desired replication state, we c
 <blockquote>
 <i class="fa fa-terminal"></i> Choose a random pod and delete it:
 </blockquote>
+
 ```
 $ oc get pods
 $ oc delete pod/PODNAME
 $ oc get pods -w
 ```
 
-If you're fast enough you'll see the pod you deleted go "Terminating" and you'll also see a new pod immediately get created and from "Pending" to "Running".  If you weren't fast enough you can see that your old pod is gone and a new pod is in the list with an age of only a few seconds.
+If you're fast enough you'll see the pod you deleted go "Terminating" and you'll also see a new pod immediately get created and transition from "Pending" to "Running".  If you weren't fast enough you can see that your old pod is gone and a new pod is in the list with an age of only a few seconds.
 
-<br/><br/><i class="fa fa-info-circle"></i>  You can see the more details about your replication controller with: ```$ oc describe rc```
+<blockquote>
+<i class="fa fa-info-circle"></i>  You can see the more details about your replication controller with:
+</blockquote>
+
+```
+$ oc describe rc
+```
 
 {{% /panel %}}
 
 {{% panel "Web Console Steps" %}}
 
-Assuming you are in the browse pods list.
+From the browse pods list:
 
 <blockquote>
 Click one of the running pods (not a build pod)
@@ -85,15 +94,24 @@ Click one of the running pods (not a build pod)
 <blockquote>
 Click the "Actions" button in the top right and then select "Delete"
 </blockquote>
-<p><img src="{{ site.baseurl }}/www/3.1/default/screenshots/ose-lab-replicationrecovery-deletepod.png" width="400"/></p>
+<img src="/static/openshift_101_dcmetromap/ocp-lab-replicationrecovery-podaction.png" width="900"><br/>
 
 <blockquote>
-Quick switch back to the Overview
+Now click the "Delete" button in the popup to confirm the pod deletion
+</blockquote>
+<img src="/static/openshift_101_dcmetromap/ocp-lab-replicationrecovery-deletepod.png" width="900"><br/>
+
+<blockquote>
+Quickly switch back to the Overview
 </blockquote>
 
-If you're fast enough you'll see the pod you deleted unfill a portion of the deployment circle, and then a new pod fill it back up.  You can browse the pods list again to see the old pod was deleted and a new pod with an age of "a few seconds" has been created to replace it.
+If you're fast enough you'll see the pod you deleted unfill a portion of the deployment circle, and then a new pod fill it back up.
 
-<p><img src="{{ site.baseurl }}/www/3.1/default/screenshots/ose-lab-replicationrecovery-podrecovery.png" width="600"/></p>
+<img src="/static/openshift_101_dcmetromap/ocp-lab-replicationrecovery-poddelete.png" width="900"><br/>
+
+You can browse the pods list again to see the old pod was deleted and a new pod with an age of "a few seconds" has been created to replace it.
+
+<img src="/static/openshift_101_dcmetromap/ocp-lab-replicationrecovery-podrecovery.png" width="900"><br/>
 
 {{% /panel %}}
 {{< /panel_group >}}
@@ -108,14 +126,18 @@ In addition to the health of your application's pods, OpenShift will watch the c
 <blockquote>
 <i class="fa fa-terminal"></i> Choose a running pod and shell into it:
 </blockquote>
+
 ```
 $ oc get pods
 $ oc exec PODNAME -it /bin/bash
 ```
 
 You are now executing a bash shell running in the container of the pod.  Let's kill our webapp and see what happens.
-<br/><i class="fa fa-info-circle"></i> If we had multiple containers in the pod we could use "-c CONTAINER_NAME" to select the right one
-<br/><br/>
+
+<blockquote>
+<i class="fa fa-info-circle"></i> If we had multiple containers in the pod we could use "-c CONTAINER_NAME" to select the right one
+</blockquote>
+
 <blockquote>
 <i class="fa fa-terminal"></i> Choose a running pod and shell into its container:
 </blockquote>
@@ -126,7 +148,6 @@ $ pkill -9 node
 
 This will kick you out off the container with an error like "Error executing command in container"
 
-<br/><br/>
 <blockquote>
 <i class="fa fa-terminal"></i> Do it again - shell in and execute the same command to kill node
 </blockquote>
@@ -154,11 +175,13 @@ In the tab bar for this pod, click on "Terminal"
 <blockquote>
 Click inside the terminal view and type $ pkill -9 node
 </blockquote>
-<p><img src="{{ site.baseurl }}/www/3.1/default/screenshots/ose-lab-replicationrecovery-terminal.png" width="400"/></p>
+<img src="/static/openshift_101_dcmetromap/ocp-lab-replicationrecovery-terminal.png" width="900"><br/>
 
-This is going to kill the node.js web server and kick you off the container.
+</br>This is going to kill the node.js web server and kick you off the container.</br></br>
 
-<p><img src="{{ site.baseurl }}/www/3.1/default/screenshots/ose-lab-replicationrecovery-terminalkick.png" width="400"/></p>
+<img src="/static/openshift_101_dcmetromap/ocp-lab-replicationrecovery-terminalkick.png" width="900"><br/>
+
+</br>
 
 <blockquote>
 Click the refresh button (on the terminal) and do that a couple more times
@@ -168,7 +191,7 @@ Click the refresh button (on the terminal) and do that a couple more times
 Go back to the pods list
 </blockquote>
 
-<p><img src="{{ site.baseurl }}/www/3.1/default/screenshots/ose-lab-replicationrecovery-backoff.png" width="500"/></p>
+<img src="/static/openshift_101_dcmetromap/ocp-lab-replicationrecovery-backoff.png" width="900"><br/>
 
 The container died multiple times so quickly that OpenShift is going to put the pod in a CrashBackOff state.  This ensures the system doesn't waste resources trying to restart containers that are continuously crashing.
 
