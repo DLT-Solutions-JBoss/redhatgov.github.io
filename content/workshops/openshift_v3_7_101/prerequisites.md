@@ -16,11 +16,11 @@ We will use the student number you were given to ensure you don't clash with cla
 
 ## Your OCP environment resides here:
 
-https://master.ocp.demo-dlt.com:8443
+https://workshop-dlt.com:8443
 
 Your user ID will be user{YOUR#} 
 
-Your password will be "example_password"
+Your password will be "navy"
 
 {{% alert success %}}
 This workshop is done entierly through the browser, but you do need a free personal GitHub account. 

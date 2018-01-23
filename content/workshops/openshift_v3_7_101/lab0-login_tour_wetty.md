@@ -1,7 +1,7 @@
 ---
 title: Login Tour - Wetty
 workshops: openshift_v3_7_101
-workshop_weight: 5
+workshop_weight: 10
 layout: lab
 ---
 
@@ -16,18 +16,16 @@ Use this URL to access the Wetty node, just change the workshopname. Ask your in
 
 ## Your terminal environment resides here:
 
-https://A_CUSTOMER.{YOUR#}.demo-dlt.com/wetty/ssh/ec2-user
+https://navy.{YOUR#}.demo-dlt.com/wetty/ssh/ec2-user
 
 When your browser session appears in your browser, it will prompt you for a login ID; use "ec2-user"
 
 You will then be prompted for a password for which you will not see when typed; <see instructor>
 
-# use "redhat!@#"
-
 After successful login, you will have a command prompt!
 
 ```bash
-https://A_CUSTOMER.{YOUR#}.demo-dlt.com/wetty/ssh/ec2-user
+https://navy.{YOUR#}.demo-dlt.com/wetty/ssh/ec2-user
 ```
 
 ### Login Info
