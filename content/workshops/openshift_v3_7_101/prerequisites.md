@@ -39,3 +39,6 @@ If you don't have a person GitHub account please sign up [here][6] to create a f
 [4]: http://git-scm.com/downloads
 [6]: https://github.com/join?source=header-home
 [8]: https://git-scm.com/downloads
+
+{{< importPartial "footer/footer.html" >}}
+
