@@ -93,3 +93,5 @@ $ oc status
 
 # Summary
 You should now be ready to get hands-on with our workshop labs.
+
+{{< importPartial "footer/footer.html" >}}
