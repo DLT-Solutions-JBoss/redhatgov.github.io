@@ -11,15 +11,16 @@ In modern software projects many teams utilize the concept of Continuous Integra
 In this lab we walk through creating a simple example of a CI/CD utlizing integrated Jenkins, all running on top of OpenShift! The Jenkins job will trigger OpenShift to build and deploy a test version of the application, validate that the deployment works, and then tag the test version into production.
 
 ## Create a new project
-Create a new project named “cicd-{YOUR#}”.
+Create a new project named “cicd-{{< span "userid" "[YOUR#]" >}}”.
 
 {{< panel_group >}}
 
 {{% panel "CLI Steps" %}}
 
 ```
-$ oc new-project cicd-{YOUR#}
+$ oc new-project cicd-{{< span "userid" "[YOUR#]" >}}
 ```
+
 {{% /panel %}}
 
 {{% panel "Web Console Steps" %}}
@@ -30,7 +31,7 @@ Browse to original landing page, and click "+ Create Project".
 <img src="../images/ocp-lab-cicd-new-project.png" width="200"><br/>
 
 <blockquote>
-Fill in the Name and Display Name of the project as "cicd-{YOUR#}" as shown below and click "Create"
+Fill in the Name and Display Name of the project as "cicd-{{< span "userid" "[YOUR#]" >}}" as shown below and click "Create"
 </blockquote>
 <img src="../images/ocp-lab-cicd-new-project-detail.png" width="600"><br/>
 {{% /panel %}}
@@ -40,7 +41,7 @@ Fill in the Name and Display Name of the project as "cicd-{YOUR#}" as shown belo
 ## Use the cicd project
 
 ```
-$ oc project cicd-{YOUR#}
+$ oc project cicd-{{< span "userid" "[YOUR#]" >}}
 ```
 
 ## Instantiate a Jenkins server in your project
@@ -104,10 +105,10 @@ The CI/CD project Overview page will show your jenkins service come up when the 
 
 ## Create a sample application configuration
 
-After adjusting your project to cicd-{YOUR#}, use the "oc new-app" command to create a simple nodejs application from a template file:
+After adjusting your project to cicd-{{< span "userid" "[YOUR#]" >}}, use the "oc new-app" command to create a simple nodejs application from a template file:
 
 ```
-$ oc project cicd-{YOUR#}
+$ oc project cicd-{{< span "userid" "[YOUR#]" >}}
 $ oc new-app -f https://raw.githubusercontent.com/openshift/origin/master/examples/jenkins/application-template.json
 ```
 > Click on "Overview" within the OpenShift console to display the sample application configuration
@@ -199,7 +200,7 @@ If so, Jenkins "tags" the image for production. This tagging will trigger anothe
 </blockquote>
 
 ```
-$ oc get services -n cicd-{YOUR#} | grep frontend
+$ oc get services -n cicd-{{< span "userid" "[YOUR#]" >}} | grep frontend
 frontend        172.30.151.206   <none>        8080/TCP    40m
 frontend-prod   172.30.230.228   <none>        8080/TCP    40m
 ```
@@ -230,3 +231,4 @@ In this lab you have very quickly and easily constructed a basic Build/Test/Depl
 [3]: https://docs.openshift.com/enterprise/latest/using_../images/other_../images/jenkins.html
 [4]: https://jenkins.io/doc
 
+{{< importPartial "footer/footer.html" >}}

@@ -336,4 +336,4 @@ To dig deeper in to details behind the steps you performed in this lab, check ou
 
 [1]: https://docs.openshift.com/container-platform/3.7/dev_guide/index.html
 
-
+{{< importPartial "footer/footer.html" >}}

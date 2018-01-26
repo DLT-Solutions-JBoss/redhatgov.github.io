@@ -171,3 +171,5 @@ Clicking the checkboxes will toggle on/off the individual metro stations on each
 In this lab we deployed a sample application using source to image.  This process built our code and wrapped that in a docker image.  It then deployed the image into our OpenShift platform in a pod and exposed a route to allow outside web traffic to access our application.  In the next lab we will look at some details of this app's deployment and make some changes to see how OpenShift can help to automate our development processes. More information about creating new applications can be found [here][1].
 
 [1]: https://docs.openshift.com/container-platform/3.7/dev_guide/application_lifecycle/new_app.html
+
+{{< importPartial "footer/footer.html" >}}

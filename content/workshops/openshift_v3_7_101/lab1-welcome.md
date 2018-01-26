@@ -40,11 +40,11 @@ Once logged in you should see all available technologies for you to choose as we
 *OCP Web Console Landing Webpage*
 
 ## So this is what an empty project looks like
-First let's create a new project to do our workshop work in.  We will use the student number you were given to ensure you don't clash with classmates, so in the steps below replace '{YOUR#}' with your student number.
+First let's create a new project to do our workshop work in.  We will use the student number you were given to ensure you don't clash with classmates, selected from the workshop widgets at the bottom of each web page.
 
-> Click on the "+ Create Project" button and give it a name of demo-{YOUR#}
+> Click on the "+ Create Project" button and give it a name of demo-{{< span "userid" "[YOUR#]" >}}
 
-> Populate "Display Name" with "demo-{YOUR#}" and populate "Description" boxes with whatever you like.  And click "Create"
+> Populate "Display Name" with "demo-{{< span "userid" "[YOUR#]" >}}" and populate "Description" boxes with whatever you like.  And click "Create"
 
 <img src="../images/ocp-new-project.png" width="600"><br/>
 *OCP Create Project Webpage*
@@ -68,7 +68,7 @@ Don't worry, it's supposed to look empty right now because you currently don't h
 ```
 $ oc login https://workshop-dlt.com:8443
 ```
-> You'll be prompted for a secure connection, respond 'y', then enter in your student credentials (Username: user{YOUR#}, Password: {get password from instructor}).
+> You'll be prompted for a secure connection, respond 'y', then enter in your student credentials (Username: user{{< span "userid" "[YOUR#]" >}}, Password: {{< span "prefix" "example_password" >}}.
 
 > <i class="fa fa-terminal"></i> Check to see what projects you have access to:
 
@@ -82,7 +82,7 @@ You just created a project using the web console, let's tell the terminal comman
 > <i class="fa fa-terminal"></i> Type the following command to use the demo project:
 
 ```
-$ oc project demo-{YOUR#}
+$ oc project demo-{{< span "userid" "[YOUR#]" >}}
 ```
 
 > <i class="fa fa-terminal"></i> Type the following command to show services, deployment configs, build configurations, and active deployments (this will come in handy later):

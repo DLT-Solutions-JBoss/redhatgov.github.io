@@ -219,3 +219,5 @@ In this lab we saw how you can configure a source code repository to trigger bui
 [3]: https://github.com/join?source=header-home
 [4]: https://github.com/DLT-Solutions-JBoss/openshift-workshops/
 [5]: https://docs.openshift.com/enterprise/latest/rest_api/openshift_v1.html#create-a-deploymentconfigrollback-2
+
+{{< importPartial "footer/footer.html" >}}

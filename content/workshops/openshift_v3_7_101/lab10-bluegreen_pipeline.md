@@ -100,3 +100,4 @@ Using pipelines for your applications provides visibility to your build, test, d
 [1]: https://jenkins.io/doc/book/pipeline/
 [2]: http://martinfowler.com/bliki/BlueGreenDeployment.html
 
+{{< importPartial "footer/footer.html" >}}

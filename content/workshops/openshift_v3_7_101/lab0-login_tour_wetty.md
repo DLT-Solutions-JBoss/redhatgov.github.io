@@ -16,17 +16,11 @@ Use this URL to access the Wetty node, just change the workshopname. Ask your in
 
 ## Your terminal environment resides here:
 
-https://navy.{YOUR#}.demo-dlt.com/wetty/ssh/ec2-user
-
-When your browser session appears in your browser, it will prompt you for a login ID; use "ec2-user"
-
-You will then be prompted for a password for which you will not see when typed; <see instructor>
-
-After successful login, you will have a command prompt!
-
 ```bash
-https://navy.{YOUR#}.demo-dlt.com/wetty/ssh/ec2-user
+{{< urifqdn "https://" "ocp" "/wetty/ssh/ec2-user" >}}
 ```
+
+When your browser session appears in your browser, it will prompt you for a login ID and password.
 
 ### Login Info
 ```bash
@@ -39,3 +33,5 @@ After logging in, you should see a shell.
 <img src="../images/wetty.png" width="1000" />
 
 The wetty instance will already have the 'oc' command installed on them. The 'oc' command is used to connect to the OpenShift Master. 
+
+{{< importPartial "footer/footer.html" >}}

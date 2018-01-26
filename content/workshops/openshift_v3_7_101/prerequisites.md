@@ -11,16 +11,17 @@ layout: lab
 # Your environments - OpenShift Container Platform & browser-based terminal
 
 {{% alert success %}}
-We will use the student number you were given to ensure you don't clash with classmates, so in the steps below replace 'YOUR#' with your student number.
+We will use the student number you were given to ensure you don't clash with classmates, so please fill out the bottom of the page with the workshop infomration and remember to hit enter in order to update this, and subsequent, workshop web pages.
 {{% /alert %}}
 
 ## Your OCP environment resides here:
 
 https://workshop-dlt.com:8443
 
-Your user ID will be user{YOUR#} 
-
-Your password will be "navy"
+```bash
+Your user ID will be:  user{{< span "userid" "[YOUR#]" >}}
+Your password will be: {{< span "prefix" "example_password" >}}
+```
 
 {{% alert success %}}
 This workshop is done entierly through the browser, but you do need a free personal GitHub account. 

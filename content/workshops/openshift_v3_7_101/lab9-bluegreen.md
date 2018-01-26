@@ -102,3 +102,5 @@ If you want to read more about Blue/Green check out [this post][2] with a longer
 
 [1]: https://github.com/DLT-Solutions-JBoss/openshift-workshops
 [2]: http://martinfowler.com/bliki/BlueGreenDeployment.html
+
+{{< importPartial "footer/footer.html" >}}

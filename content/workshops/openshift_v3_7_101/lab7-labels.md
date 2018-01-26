@@ -91,3 +91,5 @@ That's it for this lab. Now you know that all the objects in OpenShift can be la
 
 [1]: https://docs.openshift.com/enterprise/latest/architecture/core_concepts/pods_and_services.html#labels
 [2]: http://kubernetes.io/docs/user-guide/labels/
+
+{{< importPartial "footer/footer.html" >}}
