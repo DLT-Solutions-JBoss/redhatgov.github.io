@@ -1,11 +1,11 @@
 ---
 title: Lab 1 - Welcome
-workshops: openshift_v3_7_101
+workshops: openshift_v3_9_101
 workshop_weight: 11
 layout: lab
 ---
 
-# Welcome to OpenShift v3.7!
+# Welcome to OpenShift v3.9!
 This lab provides a quick tour of the console to help you get familiar with the user interface along with some key terminology we will use in subsequent lab content.  If you are already familiar with the basics of OpenShift simply ensure you can login and create the project.
 
 # Key Terms
@@ -66,9 +66,9 @@ Don't worry, it's supposed to look empty right now because you currently don't h
 > <i class="fa fa-terminal"></i> Open a terminal and login using the same URI with following command:
 
 ```
-$ oc login https://openshift.demo-dlt.com:8443
+$ oc login https://master.csra.ocp.demo-dlt.com
 ```
-#> You'll be prompted for a secure connection, respond 'y', then enter in your student credentials (Username: user{{< span "userid" "YOUR#" >}}, Password: {{< span "prefix" "example" >}}{{< span "userid" "YOUR#" >}}.
+#> You'll be prompted for a secure connection, respond 'y', then enter in your student credentials (Username: user{{< span "userid" "YOUR#" >}}, Password: r3dh4t1!.
 
 > <i class="fa fa-terminal"></i> Check to see what projects you have access to:
 

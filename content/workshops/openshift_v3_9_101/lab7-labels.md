@@ -1,6 +1,6 @@
 ---
 title: Lab 7 - Labels
-workshops: openshift_v3_7_101
+workshops: openshift_v3_9_101
 workshop_weight: 17
 layout: lab
 ---

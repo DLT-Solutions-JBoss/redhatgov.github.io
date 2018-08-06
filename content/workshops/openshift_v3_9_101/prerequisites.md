@@ -1,6 +1,6 @@
 ---
 title: Verify Prerequisites
-workshops: openshift_v3_7_101
+workshops: openshift_v3_9_101
 workshop_weight: 0
 layout: lab
 ---
@@ -16,11 +16,11 @@ We will use the student number you were given to ensure you don't clash with cla
 
 ## Your OCP environment resides here:
 
-https://openshift.demo-dlt.com:8443
+https://master.csra.ocp.demo-dlt.com
 
 ```bash
 Your user ID will be:  user{{< span "userid" "YOUR#" >}}
-Your password will be: {{< span "prefix" "example" >}}{{< span "userid" "YOUR#" >}}
+Your password will be: r3dh4t1!
 ```
 
 {{% alert success %}}

@@ -1,6 +1,6 @@
 ---
 title: Lab 8 - CI / CD 
-workshops: openshift_v3_7_101
+workshops: openshift_v3_9_101
 workshop_weight: 18
 layout: lab
 ---
